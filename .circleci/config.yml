@@ -4,6 +4,7 @@ orbs:
 workflows:
     build:
         jobs:
+            - cypress/install
             - cypress/run:
                 store_artifacts: true
                 parallel: true
