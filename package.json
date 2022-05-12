@@ -12,7 +12,7 @@
         "web-vitals": "^2.1.4"
     },
     "scripts": {
-        "test": "cypress run",
+        "test": "cypress run --record --key=ksvan2",
         "test:open": "cypress open"
     },
     "eslintConfig": {
