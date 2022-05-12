@@ -10,4 +10,4 @@ workflows:
                 - cypress/install
                 store_artifacts: true
                 parallel: true
-                parallelism: 2
+                parallelism: 4
