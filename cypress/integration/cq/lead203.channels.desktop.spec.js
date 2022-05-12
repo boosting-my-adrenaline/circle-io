@@ -96,7 +96,8 @@ describe('cq lead 203 desktop', () => {
         yourPhone: ['street 26', 'example@gmail.com', '8652341452'],
     };
 
-    const baseURL = 'http://localhost:8080';
+    // const baseURL = 'http://localhost:8080';
+    const baseURL = 'http://test.cheaper-quotes.com';
 
     const test = (provider, channel, sourceID) =>
         it(`${provider} ch: ${channel}`, () => {
@@ -106,7 +107,7 @@ describe('cq lead 203 desktop', () => {
             cy.intercept('POST', 'https://info.leadid.com/**', {});
             cy.visit(
                 baseURL +
-                    `/?lead=203&lb=off&lpage=${provider}${
+                    `/?test=1&lead=203&lb=off&lpage=${provider}${
                         channel !== 'default' ? `&ch=${channel}` : ``
                     }`
             );

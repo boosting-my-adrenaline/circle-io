@@ -108,7 +108,8 @@ describe('cq lead 7 desktop', () => {
         yourName: ['John', 'Locke'],
     };
 
-    const baseURL = 'http://localhost:8080';
+    // const baseURL = 'http://localhost:8080';
+    const baseURL = 'http://test.cheaper-quotes.com';
 
     const test = (provider, channel, sourceID) =>
         it(`${provider} ch: ${channel}`, () => {
@@ -118,7 +119,7 @@ describe('cq lead 7 desktop', () => {
             cy.intercept('POST', 'https://info.leadid.com/**', {});
             cy.visit(
                 baseURL +
-                    `/?lead=7&lb=off&lpage=${provider}${
+                    `/?test=1&lead=7&lb=off&lpage=${provider}${
                         channel !== 'default' ? `&ch=${channel}` : ``
                     }`
             );

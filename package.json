@@ -12,7 +12,8 @@
         "web-vitals": "^2.1.4"
     },
     "scripts": {
-        "test": "cypress run"
+        "test": "cypress run",
+        "test:open": "cypress open"
     },
     "eslintConfig": {
         "extends": [
