@@ -12,13 +12,7 @@
         "web-vitals": "^2.1.4"
     },
     "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test",
-        "test:cypress": "cypress open",
-        "test:record1": "cypress run --record --key 1371d7bd-0fd6-4ced-92fd-1c38a3dd295b",
-        "test:par1": "cypress run --record --key=ksvan2 --parallel",
-        "eject": "react-scripts eject"
+        "test": "cypress run"
     },
     "eslintConfig": {
         "extends": [
