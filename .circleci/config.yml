@@ -6,3 +6,5 @@ workflows:
         jobs:
             - cypress/run:
                 store_artifacts: true
+                parallel: true
+                parrallelism: 2
