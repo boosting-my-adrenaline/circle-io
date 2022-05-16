@@ -62,7 +62,7 @@ jobs:
             - name: 'UI Tests - Chrome'
               uses: cypress-io/github-action@v2
               with:
-                  install: false
+                  install: true
                   browser: chrome
                   record: true
                   parallel: true
