@@ -37,7 +37,7 @@ jobs:
               uses: cypress-io/github-action@v2
               with:
                   runTests: false
-                  build: npm build
+                  build: npm run build
     # cypress-run:
     #     runs-on: ubuntu-latest
     #     container: cypress/browsers:node14.17.6-slim-chrome100-ff99-edge
