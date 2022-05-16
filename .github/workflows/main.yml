@@ -50,7 +50,7 @@ jobs:
 
     #         - name: Cypress run
     #           uses: cypress-io/github-action@v2
-    ui-chrome-tests:
+    chrome-tests:
         runs-on: ubuntu-latest
         container: cypress/browsers:node14.17.6-slim-chrome100-ff99-edge
         needs: install
@@ -68,14 +68,28 @@ jobs:
                   name: build
                   path: build
 
-            - name: 'UI Tests - Chrome'
+            - name: 'CQ Tests - Chrome'
               uses: cypress-io/github-action@v2
               with:
                   # install: false
                   browser: chrome
                   record: true
                   parallel: true
-                  group: 'UI - Chrome'
+                  group: 'CQ - Chrome'
+                  spec: cypress/integration/cq/channels/*
+              env:
+                  CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+                  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: 'CQ Tests - Firefox'
+              uses: cypress-io/github-action@v2
+              with:
+                  # install: false
+                  browser: firefox
+                  record: true
+                  parallel: true
+                  group: 'CQ - Firefox'
                   spec: cypress/integration/cq/channels/*
               env:
                   CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
