@@ -40,6 +40,7 @@ jobs:
     #           uses: cypress-io/github-action@v2
 
     ui-chrome-tests:
+        timeout-minutes: 600
         runs-on: ubuntu-latest
         container: cypress/browsers:node14.17.6-slim-chrome100-ff99-edge
         needs: install
@@ -70,8 +71,10 @@ jobs:
                   record: true
                   parallel: true
                   group: 'UI - Chrome'
-                  spec: cypress/tests/ui/*
+                  spec: cypress/integration/cq/channels*
+                  # spec: cypress/tests/ui*
               env:
+                  CYPRESS_PROJECT_ID: ksvan2
                   CYPRESS_RECORD_KEY: 1371d7bd-0fd6-4ced-92fd-1c38a3dd295b
                   # Recommended: pass the GitHub token lets this action correctly
                   # determine the unique run id necessary to re-run the checks
