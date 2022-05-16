@@ -26,9 +26,28 @@ jobs:
             - name: Cypress install
               uses: cypress-io/github-action@v2
 
-    cypress-run:
+    # cypress-run:
+    #     runs-on: ubuntu-latest
+    #     container: cypress/browsers:node14.17.6-slim-chrome100-ff99-edge
+    #     steps:
+    #         - name: Checkout
+    #           uses: actions/checkout@v2.4.2
+
+    #         - name: Download the build folders
+    #           uses: actions/download-artifact@v3
+
+    #         - name: Cypress run
+    #           uses: cypress-io/github-action@v2
+
+    ui-chrome-tests:
         runs-on: ubuntu-latest
         container: cypress/browsers:node14.17.6-slim-chrome100-ff99-edge
+        needs: install
+        strategy:
+            fail-fast: false
+            matrix:
+                # run copies of the current job in parallel
+                containers: [1, 2, 3, 4, 5]
         steps:
             - name: Checkout
               uses: actions/checkout@v2.4.2
@@ -36,11 +55,24 @@ jobs:
             - name: Download the build folders
               uses: actions/download-artifact@v3
               # with:
-              #   name: build
-              #   path: build
-            - name: Cypress run
+              #     name: build
+              #     path: build
+
+            - name: 'UI Tests - Chrome'
               uses: cypress-io/github-action@v2
-              # with:
-              #   # Specify Browser since container image is compile with Firefox
-              #   browser: firefox
-              #   build: yarn build
+              with:
+                  # we have already installed all dependencies above
+                  install: false
+                  # start: yarn start:ci
+                  # wait-on: 'http://localhost:3000'
+                  # wait-on-timeout: 120
+                  browser: chrome
+                  record: true
+                  parallel: true
+                  group: 'UI - Chrome'
+                  spec: cypress/tests/ui/*
+              env:
+                  CYPRESS_RECORD_KEY: 1371d7bd-0fd6-4ced-92fd-1c38a3dd295b
+                  # Recommended: pass the GitHub token lets this action correctly
+                  # determine the unique run id necessary to re-run the checks
+                  # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
