@@ -27,11 +27,11 @@ jobs:
             - name: Save build folder
               uses: actions/upload-artifact@v3
               with:
-                  name: build
-                  if-no-files-found: error
-                  path: build
-                  # name: my-artifact
-                  # path: cypress/artifacts
+                  # name: build
+                  # if-no-files-found: error
+                  # path: build
+                  name: my-artifact
+                  path: cypress/artifacts
 
             - name: Cypress install
               uses: cypress-io/github-action@v2
@@ -64,8 +64,7 @@ jobs:
             - name: Download the build folders
               uses: actions/download-artifact@v3
               with:
-                  name: build
-                  path: build
+                  path: cypress/artifacts
 
             - name: 'UI Tests - Chrome'
               uses: cypress-io/github-action@v2
