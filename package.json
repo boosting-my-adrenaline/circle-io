@@ -13,6 +13,7 @@
     },
     "scripts": {
         "build": "react-scripts build",
+        "start": "react-scripts start",
         "start:ci": "npm run start",
         "test": "cypress run --record --key=ksvan2 --parallel",
         "test:open": "cypress open",
