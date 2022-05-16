@@ -195,8 +195,8 @@ describe('cq lead 7 desktop', () => {
         });
 
     [
-        [tran, 'tran'],
-        [sure5, 'sure5'],
+        // [tran, 'tran'],
+        // [sure5, 'sure5'],
         [eq, 'eq'],
     ].forEach((provider) => {
         for (const [channel, id] of Object.entries(provider[0])) {
