@@ -1,81 +1,82 @@
 name: Cypress tests
 on: [push]
-# jobs:
-# cypress-run:
-#   runs-on: ubuntu-latest
-#   steps:
-#     - name: Checkout
-#       uses: actions/checkout@v2.4.2
-#     - name: Cypress.io
-#       uses: cypress-io/github-action@v2.9.7
-
 jobs:
-    install:
-        runs-on: ubuntu-latest
-        container: cypress/browsers:node14.17.6-slim-chrome100-ff99-edge
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v2.4.2
+cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Checkout
+          uses: actions/checkout@v2.4.2
+        - name: Cypress.io
+          uses: cypress-io/github-action@v2.9.7
+          with:
+              record: true
+          env:
+              CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+# jobs:
+#     install:
+#         runs-on: ubuntu-latest
+#         container: cypress/browsers:node14.17.6-slim-chrome100-ff99-edge
+#         steps:
+#             - name: Checkout
+#               uses: actions/checkout@v2.4.2
 
-            - name: Save build folder
-              uses: actions/upload-artifact@v3
-              with:
-                  name: my-artifact
-                  path: cypress/artifacts
+#             - name: Save build folder
+#               uses: actions/upload-artifact@v3
+#               with:
+#                   name: my-artifact
+#                   path: cypress/artifacts
 
-            - name: Cypress install
-              uses: cypress-io/github-action@v2
+#             - name: Cypress install
+#               uses: cypress-io/github-action@v2
 
-    # cypress-run:
-    #     runs-on: ubuntu-latest
-    #     container: cypress/browsers:node14.17.6-slim-chrome100-ff99-edge
-    #     steps:
-    #         - name: Checkout
-    #           uses: actions/checkout@v2.4.2
+# cypress-run:
+#     runs-on: ubuntu-latest
+#     container: cypress/browsers:node14.17.6-slim-chrome100-ff99-edge
+#     steps:
+#         - name: Checkout
+#           uses: actions/checkout@v2.4.2
 
-    #         - name: Download the build folders
-    #           uses: actions/download-artifact@v3
+#         - name: Download the build folders
+#           uses: actions/download-artifact@v3
 
-    #         - name: Cypress run
-    #           uses: cypress-io/github-action@v2
+#         - name: Cypress run
+#           uses: cypress-io/github-action@v2
 
-    ui-chrome-tests:
-        timeout-minutes: 600
-        runs-on: ubuntu-latest
-        container: cypress/browsers:node14.17.6-slim-chrome100-ff99-edge
-        needs: install
-        strategy:
-            fail-fast: false
-            matrix:
-                # run copies of the current job in parallel
-                containers: [1, 2, 3, 4, 5]
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v2.4.2
+# ui-chrome-tests:
+#     timeout-minutes: 600
+#     runs-on: ubuntu-latest
+#     container: cypress/browsers:node14.17.6-slim-chrome100-ff99-edge
+#     needs: install
+#     strategy:
+#         fail-fast: false
+#         matrix:
+#             # run copies of the current job in parallel
+#             containers: [1, 2, 3, 4, 5]
+#     steps:
+#         - name: Checkout
+#           uses: actions/checkout@v2.4.2
 
-            - name: Download the build folders
-              uses: actions/download-artifact@v3
-              # with:
-              #     name: build
-              #     path: build
+#         - name: Download the build folders
+#           uses: actions/download-artifact@v3
+#           # with:
+#           #     name: build
+#           #     path: build
 
-            - name: 'UI Tests - Chrome'
-              uses: cypress-io/github-action@v2
-              with:
-                  # we have already installed all dependencies above
-                  install: false
-                  # start: yarn start:ci
-                  # wait-on: 'http://localhost:3000'
-                  # wait-on-timeout: 120
-                  browser: chrome
-                  record: true
-                  parallel: true
-                  group: 'UI - Chrome'
-                  spec: cypress/integration/cq/channels*
-                  # spec: cypress/tests/ui*
-              env:
-                  CYPRESS_PROJECT_ID: ksvan2
-                  CYPRESS_RECORD_KEY: 1371d7bd-0fd6-4ced-92fd-1c38a3dd295b
-                  # Recommended: pass the GitHub token lets this action correctly
-                  # determine the unique run id necessary to re-run the checks
-                  # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#         - name: 'UI Tests - Chrome'
+#           uses: cypress-io/github-action@v2
+#           with:
+#               # we have already installed all dependencies above
+#               install: false
+#               browser: chrome
+#               record: true
+#               parallel: true
+#               group: 'UI - Chrome'
+#               spec: cypress/integration/cq/channels*
+#               # spec: cypress/tests/ui*
+#           env:
+#               CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+#               CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+#               # Recommended: pass the GitHub token lets this action correctly
+#               # determine the unique run id necessary to re-run the checks
+#               # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
