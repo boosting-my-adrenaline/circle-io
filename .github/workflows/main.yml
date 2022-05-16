@@ -1,18 +1,18 @@
 name: Cypress tests
 on: [push]
 jobs:
-cypress-run:
-    runs-on: ubuntu-latest
-    steps:
-        - name: Checkout
-          uses: actions/checkout@v2.4.2
-        - name: Cypress.io
-          uses: cypress-io/github-action@v2.9.7
-          with:
-              record: true
-          env:
-              CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    cypress-run:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2.4.2
+            - name: Cypress.io
+              uses: cypress-io/github-action@v2.9.7
+              with:
+                  record: true
+              env:
+                  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 # jobs:
 #     install:
 #         runs-on: ubuntu-latest
