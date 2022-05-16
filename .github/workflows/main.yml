@@ -27,16 +27,17 @@ jobs:
             - name: Save build folder
               uses: actions/upload-artifact@v3
               with:
-                  # name: build
-                  # if-no-files-found: error
-                  # path: build
-                  name: my-artifact
-                  path: cypress/artifacts
+                  name: build
+                  if-no-files-found: error
+                  path: build
+                  # name: my-artifact
+                  # path: cypress/artifacts
 
             - name: Cypress install
               uses: cypress-io/github-action@v2
               with:
                   runTests: false
+                  build: npm build
     # cypress-run:
     #     runs-on: ubuntu-latest
     #     container: cypress/browsers:node14.17.6-slim-chrome100-ff99-edge
@@ -64,7 +65,8 @@ jobs:
             - name: Download the build folders
               uses: actions/download-artifact@v3
               with:
-                  path: cypress/artifacts
+                  name: build
+                  path: build
 
             - name: 'UI Tests - Chrome'
               uses: cypress-io/github-action@v2
