@@ -22,16 +22,21 @@ jobs:
         container: cypress/browsers:node14.17.6-slim-chrome100-ff99-edge
         steps:
             - name: Checkout
-              uses: actions/checkout@v2.4.2
+              uses: actions/checkout@v3
 
             - name: Save build folder
               uses: actions/upload-artifact@v3
               with:
-                  name: my-artifact
-                  path: cypress/artifacts
+                  name: build
+                  if-no-files-found: error
+                  path: build
+                  # name: my-artifact
+                  # path: cypress/artifacts
 
             - name: Cypress install
               uses: cypress-io/github-action@v2
+              with:
+                  runTests: false
     # cypress-run:
     #     runs-on: ubuntu-latest
     #     container: cypress/browsers:node14.17.6-slim-chrome100-ff99-edge
@@ -54,10 +59,13 @@ jobs:
                 containers: [1, 2, 3, 4, 5]
         steps:
             - name: Checkout
-              uses: actions/checkout@v2.4.2
+              uses: actions/checkout@v3
 
             - name: Download the build folders
               uses: actions/download-artifact@v3
+              with:
+                  name: build
+                  path: build
 
             - name: 'UI Tests - Chrome'
               uses: cypress-io/github-action@v2
@@ -67,7 +75,7 @@ jobs:
                   record: true
                   parallel: true
                   group: 'UI - Chrome'
-                  spec: cypress/integration/cq/channels*
+                  spec: cypress/integration/cq/channels/*
               env:
                   CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
                   CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
