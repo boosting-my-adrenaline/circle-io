@@ -1,31 +1,46 @@
 name: Cypress tests
 on: [push]
 # jobs:
-    # cypress-run:
-    #   runs-on: ubuntu-latest
-    #   steps:
-    #     - name: Checkout
-    #       uses: actions/checkout@v2.4.2
-    #     - name: Cypress.io
-    #       uses: cypress-io/github-action@v2.9.7
+# cypress-run:
+#   runs-on: ubuntu-latest
+#   steps:
+#     - name: Checkout
+#       uses: actions/checkout@v2.4.2
+#     - name: Cypress.io
+#       uses: cypress-io/github-action@v2.9.7
 
 jobs:
-  install:
-    runs-on: ubuntu-latest
-    container: cypress/browsers:node14.17.6-slim-chrome100-ff99-edge 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2.4.2
+    install:
+        runs-on: ubuntu-latest
+        container: cypress/browsers:node14.17.6-slim-chrome100-ff99-edge
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2.4.2
 
-      - name: Save build folder
-        uses: actions/upload-artifact@v3
-        with:
-          name: my-artifact
-          path: cypress/artifacts
+            - name: Save build folder
+              uses: actions/upload-artifact@v3
+              with:
+                  name: my-artifact
+                  path: cypress/artifacts
 
-      - name: Cypress install
-        uses: cypress-io/github-action@v2
-        # with:
-        #   # Disable running of tests within install job
-        #   runTests: false
-        #   build: yarn build
+            - name: Cypress install
+              uses: cypress-io/github-action@v2
+
+    cypress-run:
+        runs-on: ubuntu-latest
+        container: cypress/browsers:node14.17.6-slim-chrome100-ff99-edge
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2.4.2
+
+            - name: Download the build folders
+              uses: actions/download-artifact@v3
+              # with:
+              #   name: build
+              #   path: build
+            - name: Cypress run
+              uses: cypress-io/github-action@v2
+              # with:
+              #   # Specify Browser since container image is compile with Firefox
+              #   browser: firefox
+              #   build: yarn build
