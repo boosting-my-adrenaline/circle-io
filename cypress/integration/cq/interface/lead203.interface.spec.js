@@ -1,4 +1,4 @@
-import { actions, selectItem } from '../../userActions';
+import { actions, selectItem } from '../../../userActions';
 
 describe('cq lead 203', () => {
     const baseUrl = 'http://localhost:8080';
