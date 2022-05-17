@@ -75,8 +75,22 @@ jobs:
                   browser: chrome
                   record: true
                   parallel: true
-                  group: 'CQ - Chrome'
+                  group: 'CQ - Chrome Channels'
                   spec: cypress/integration/cq/channels/*
+              env:
+                  CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+                  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: 'CQ Tests - Chrome'
+              uses: cypress-io/github-action@v2
+              with:
+                  # install: false
+                  browser: chrome
+                  record: true
+                  parallel: true
+                  group: 'CQ - Chrome Interface'
+                  spec: cypress/integration/cq/interface/*
               env:
                   CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
                   CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
