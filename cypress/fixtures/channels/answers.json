@@ -1,0 +1,41 @@
+{
+    "lead7": {
+        "zip": "75216",
+        "vehicleYear_1": "2021",
+        "vehicleMake_1": "CHEVROLET",
+        "vehicleModel_1": "CAMARO SS",
+        "vehicleSubModel_1": "COUPE 2 DOOR",
+        "secondVehicle": "No",
+        "licenseStatus": "Yes",
+        "doesRequireSR22": "Yes",
+        "currentlyInsured": "Yes",
+        "insuranceCarrier": "21st Century",
+        "insuredTimeframe": "Less than year",
+        "gender": "Male",
+        "maritalStatus": "Yes",
+        "creditRating": "Excellent",
+        "education": "Masters degree",
+        "ownHome": "Rent",
+        "hasAccidents": "No",
+        "birthMonth": "NOV",
+        "birthDay": "10",
+        "birthYear": "1986",
+        "yourName": ["James", "Harden"]
+    },
+    "lead203": {
+        "zip": "75216",
+        "vehicleYear_1": "2021",
+        "vehicleMake_1": "CHEVROLET",
+        "vehicleModel_1": "CAMARO SS",
+        "vehicleSubModel_1": "COUPE 2 DOOR",
+        "secondVehicle": "No",
+        "insuranceCarrier": "21st Century",
+        "insuredTimeframe": "1 year or less",
+        "maritalStatus": ["No", "No", "Female"],
+        "birthMonth": "NOV",
+        "birthDay": "10",
+        "birthYear": "1986",
+        "yourName": ["John", "Locke"],
+        "yourPhone": ["street 26", "example@gmail.com", "8652341452"]
+    }
+}

@@ -1,139 +1,54 @@
-describe('cq lead 203 desktop', () => {
-    const sure5 = {
-        default: '606319',
-        1: '667922',
-        2: '667877',
-        3: '667876',
-        4: '606319',
-        5: '606319',
-        6: '666066',
-        7: '667909',
-        10: '668974',
-        11: '669481',
-        13: '606319',
-        14: '606319',
-        15: '606319',
-        s: '666067',
-        form3: '606319',
-    };
+import { actions } from '../../../userActions';
+/* getting emulated user's actions we need to run tests from userActions.js */
+const {
+    selectItem,
+    selectInRadioGroup,
+    selectItemFromDropDown,
+    typeInInput,
+    clickButton,
+} = actions;
 
-    const tran = {
-        default: '6130',
-        1: '6130',
-        2: '7742',
-        3: '6130',
-        4: '6698',
-        5: '6130',
-        6: '6130',
-        7: '6130',
-        10: '7741',
-        13: '7478',
-        14: '7476',
-        15: '6130',
-        s: '6130',
-        form3: '5977',
-    };
+describe('cq lead 203 desktop channels', () => {
+    /* test function to be invoked */
+    const test = (provider, channel) => {
+        /* variables to be changed after parcing data */
+        let answers, sourceID, correctPayload;
 
-    const eq = {
-        default: 'SEM_Tier_3',
-        1: 'SEM_Tier_1',
-        2: 'SEM_Tier_2',
-        3: 'SEM_Tier_3',
-    };
+        before(() => {
+            /* getting correct payload from fixtures/channels/channels.json */
+            cy.fixture('channels/answers').then((answersData) => {
+                answers = answersData.lead203;
+            });
 
-    const correctPayload = {
-        birthDay: 10,
-        birthMonth: 11,
-        birthYear: 1986,
-        city: 'Dallas',
-        creditRating: 'Good',
-        currentlyInsured: 'Yes',
-        doesRequireSR22: 'N',
-        education: 'Associate',
-        email: 'example@gmail.com',
-        firstName: 'John',
-        gender: 'F',
-        hasAccidents: 'No',
-        insuranceCarrier: '21st Century',
-        insuredTimeframe: 'SixToElevenMonths',
-        lastName: 'Locke',
-        lb: 'off',
-        lead: '203',
-        leadVersion: '203',
-        licenseStatus: 'Valid',
-        location: '75216',
-        maritalStatus: 'No',
-        moreThenOneVehicle: 'No',
-        ownHome: 'No',
-        phoneNumber: '(865) 234-1452',
-        state: 'TX',
-        streetAddress: 'street 26',
-        test: 1,
-        vehicleMake_1: 'CHEVROLET',
-        vehicleMake_2: '',
-        vehicleModel_1: 'CAMARO SS',
-        vehicleModel_2: '',
-        vehicleSubModel_1: 'COUPE 2 DOOR',
-        vehicleSubModel_2: '',
-        vehicleYear_1: 2021,
-        vehicleYear_2: '',
-        zip: '75216',
-    };
+            /* getting certain source id depending on provider, channel,
+                and device from fixtures/channels/channels.json */
+            cy.fixture('channels/channels').then((channels) => {
+                sourceID = channels[provider][channel].desktop;
+            });
 
-    const answers = {
-        vehicleYear_1: '2021',
-        vehicleMake_1: 'CHEVROLET',
-        vehicleModel_1: 'CAMARO SS',
-        vehicleSubModel_1: 'COUPE 2 DOOR',
-        secondVehicle: 'No',
-        insuranceCarrier: '21st Century',
-        insuredTimeframe: '1 year or less',
-        maritalStatus: ['No', 'No', 'Female'],
-        birthMonth: 'NOV',
-        birthDay: '10',
-        birthYear: '1986',
-        yourName: ['John', 'Locke'],
-        yourPhone: ['street 26', 'example@gmail.com', '8652341452'],
-    };
+            /* getting correct payload from fixtures/channels/channels.json */
+            cy.fixture('channels/payload').then((payload) => {
+                correctPayload = payload.lead203;
+            });
+        });
 
-    // const baseURL = 'http://localhost:8080';
-    const baseURL = 'http://test.cheaper-quotes.com';
-
-    const test = (provider, channel, sourceID) =>
         it(`${provider} ch: ${channel}`, () => {
             localStorage.clear();
             cy.viewport('macbook-15');
             cy.intercept('POST', 'https://create.leadid.com/**', {});
             cy.intercept('POST', 'https://info.leadid.com/**', {});
+
+            const baseURL = 'http://test.cheaper-quotes.com';
             cy.visit(
                 baseURL +
-                    `/?test=1&lead=203&lb=off&lpage=${provider}${
-                        channel !== 'default' ? `&ch=${channel}` : ``
-                    }`
+                    '/?lb=off' +
+                    '&test=1' +
+                    '&lead=203' +
+                    `&lpage=${provider}` +
+                    `${channel !== 'default' ? `&ch=${channel}` : ``}`
             );
-            const selectItem = (item) =>
-                cy.get('.choice-list').contains(item).click();
 
-            const selectItemFromDropDown = (item) =>
-                cy.get('.selectbox').select(item);
-
-            const clickButton = (button) =>
-                cy.get('.funnel-form-container').contains(button).click();
-
-            const selectInRadioGroup = (radiogroup, choice) =>
-                cy
-                    .get(`.choice-holder > :nth-child(${radiogroup})`)
-                    .contains(choice)
-                    .click();
-
-            const typeInInput = (input, text) =>
-                cy.get(`#${input}`).type(text, { delay: 10 });
-
-            /////////////////////////////////////////////////////////////
-            // cy.get('#inputZipCode1').type('75216', { delay: 10 });
-            typeInInput('inputZipCode1', 75216 + '{enter}');
-            // cy.get('.info-block').contains('Get Started').click();
-
+            typeInInput('inputZipCode1', answers.zip + '{enter}');
             selectItem(answers.vehicleYear_1);
             selectItem(answers.vehicleMake_1);
             selectItem(answers.vehicleModel_1);
@@ -155,7 +70,6 @@ describe('cq lead 203 desktop', () => {
             typeInInput('streetAddress', answers.yourPhone[0]);
             typeInInput('email', answers.yourPhone[1]);
             typeInInput('phoneNumber', answers.yourPhone[2]);
-
             cy.intercept('POST', '**/results/**').as('results');
             cy.get('.funnel-form-container')
                 .contains('Get My Quotes')
@@ -163,17 +77,27 @@ describe('cq lead 203 desktop', () => {
 
             cy.wait('@results', { timeout: 60000 }).should(
                 ({ request, response }) => {
+                    /* comparing of request data with correct data */
                     for (const [key, value] of Object.entries(correctPayload)) {
                         expect(request.body.data[key]?.toString()).to.equal(
                             value?.toString()
                         );
                     }
+
+                    /* checking provider */
                     expect(request.body.page).to.equal(provider);
+
+                    /* comparing of qrps with correct source id */
+                    expect(request.body.data.qrps).to.equal(sourceID);
+
+                    /* comparing of account id with corerct source id */
                     expect(
                         response.body.response.listingset[
                             provider === 'eq' ? 'accountId' : 'accountid'
                         ]
                     ).to.equal(sourceID);
+
+                    /* comparing of each listing source id with correct */
                     response.body.response.listingset.listing.forEach(
                         (list) => {
                             expect(list.source_id).to.equal(sourceID);
@@ -183,14 +107,58 @@ describe('cq lead 203 desktop', () => {
                 }
             );
         });
+    };
 
+    /* starting tests itself */
     [
-        [tran, 'tran'],
-        [sure5, 'sure5'],
-        [eq, 'eq'],
-    ].forEach((provider) => {
-        for (const [channel, id] of Object.entries(provider[0])) {
-            test(provider[1], channel, id);
-        }
-    });
+        {
+            provider: 'sure5',
+            /* sure5 channels to be tested */
+            channels: [
+                'default',
+                '1',
+                '2',
+                '3',
+                '4',
+                '5',
+                '6',
+                '7',
+                '10',
+                '11',
+                '12',
+                '13',
+                '14',
+                '15',
+                's',
+                'form3',
+            ],
+        },
+        {
+            provider: 'tran',
+            /* tran channels to be tested */
+            channels: [
+                'default',
+                '1',
+                '2',
+                '3',
+                '4',
+                '5',
+                '6',
+                '7',
+                '10',
+                '13',
+                '14',
+                '15',
+                's',
+                'form3',
+            ],
+        },
+        {
+            provider: 'eq',
+            /* eq channels to be tested */
+            channels: ['default', '1', '2', '3'],
+        },
+    ].forEach(({ provider, channels }) =>
+        channels.forEach((channel) => test(provider, channel))
+    );
 });

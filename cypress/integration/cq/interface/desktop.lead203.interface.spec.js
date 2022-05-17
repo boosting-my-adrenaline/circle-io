@@ -1,6 +1,8 @@
+import { actions, selectItem } from '../../userActions';
+
 describe('cq lead 203', () => {
-    // const baseUrl = 'http://localhost:8080';
-    const baseUrl = 'test.cheaper-quotes.com';
+    const baseUrl = 'http://localhost:8080';
+    // const baseUrl = 'test.cheaper-quotes.com';
 
     const url = baseUrl + '/?lead=203&lb=off';
 
@@ -9,94 +11,35 @@ describe('cq lead 203', () => {
         cy.viewport('macbook-13');
         cy.intercept('POST', 'https://create.leadid.com/**', {});
         cy.intercept('POST', 'https://info.leadid.com/**', {});
+        cy.intercept('POST', 'https://in.hotjar.com/**', {});
         cy.visit(url, { headers: { 'Accept-Encoding': 'gzip, deflate' } });
     });
 
     it('lead 203', () => {
-        const stepBack = () =>
-            cy.get('.navbar').contains('Previous Question').click();
-
-        const selectItem = (item) =>
-            cy.get('.choice-list').contains(item).click();
-
-        const selectItemFromDropDown = (item) =>
-            cy.get('.selectbox').select(item);
-
-        const clickButton = (button) =>
-            cy.get('.funnel-form-container').contains(button).click();
-
-        const selectInRadioGroup = (radiogroup, choice) =>
-            cy
-                .get(`.choice-holder > :nth-child(${radiogroup})`)
-                .contains(choice)
-                .click();
-
-        const typeInInput = (input, text) =>
-            cy.get(`#${input}`).type(text, { delay: 82 });
-
-        const clearInput = (input) => cy.get(`#${input}`).clear();
-
-        ///////////////////////////////
-
-        const checkItemsAmount = (amount) =>
-            cy.get('.choice-list').children().should('have.length', amount);
-
-        const checkItemSelected = (item) =>
-            cy
-                .get('.choice-list')
-                .contains(item)
-                .should('have.class', 'selected');
-
-        const checkNoSelectedItems = () =>
-            cy
-                .get('.choice-list')
-                .children()
-                .should('not.have.class', 'selected');
-
-        const checkItemInLocalStorage = (key, value) =>
-            cy
-                .get('#clear-local-storage')
-                .should(() =>
-                    expect(
-                        JSON.parse(localStorage.getItem('ffr7')).data.data[
-                            key
-                        ].toString()
-                    ).to.be.equal(value)
-                );
-
-        const checkHeader = (header) =>
-            cy.get('.funnel-form-title').should('have.text', header);
-
-        const checkDropDown = (value) =>
-            cy.get('.selectbox').should('have.value', value);
-
-        const checkRadioGroupSelected = (radiogroup, choice) => {
-            let element = cy
-                .get(`.choice-holder > :nth-child(${radiogroup})`)
-                .contains(choice)
-                .parent()
-                .children();
-            ['Yes', 'Male'].includes(choice)
-                ? element.first().should('have.class', 'selected')
-                : element.last().should('have.class', 'selected');
-        };
-
-        const checkInput = (input, text) =>
-            cy.get(`#${input}`).should('have.value', text);
-
-        const checkInputNoError = (input) =>
-            cy
-                .get(`#${input}`)
-                .should('have.css', 'border-color', 'rgb(11, 44, 104)');
-        const checkInputError = (input) =>
-            cy
-                .get(`#${input}`)
-                .should('have.css', 'border-color', 'rgb(232, 86, 86)');
-
-        ///////////////////////////////////////////////
+        const {
+            stepBack,
+            selectItem,
+            selectItemFromDropDown,
+            clickButton,
+            selectInRadioGroup,
+            editCar,
+            deleteCar,
+            typeInInput,
+            clearInput,
+            checkItemsAmount,
+            checkItemSelected,
+            checkNoSelectedItems,
+            checkItemInLocalStorage,
+            checkHeader,
+            checkDropDown,
+            checkRadioGroupSelected,
+            checkEditVehicle,
+            checkInput,
+            checkInputNoError,
+            checkInputError,
+        } = actions;
 
         cy.title().should('include', 'Cheaper-Quotes');
-        // cy.get('h1').should('have.text', 'Get Cheap Car Insurance Rates Today')
         cy.get('#inputZipCode1').type('75216', { delay: 176 });
         cy.get(
             '.info-block > .newHomeAutoSbmt > .form-container > .btn'
@@ -149,11 +92,9 @@ describe('cq lead 203', () => {
         checkItemInLocalStorage('vehicleModel_1', 'LAND CRUISER');
         checkHeader('Add second vehicle?');
 
-        cy.get('.input-edit').should(
-            'have.text',
-            '1 |2016 toyota land cruiser'
-        );
-        cy.get('.input-edit a').first().click();
+        checkEditVehicle(1, 2016, 'TOYOTA', 'LAND CRUISER');
+
+        editCar(1);
         checkItemSelected('2016');
         selectItem('2016');
 
@@ -165,7 +106,7 @@ describe('cq lead 203', () => {
         checkItemInLocalStorage('vehicleYear_1', '2016');
         checkItemInLocalStorage('vehicleMake_1', 'TOYOTA');
         checkItemInLocalStorage('vehicleModel_1', 'LAND CRUISER');
-        cy.get('.input-edit a').last().click();
+        deleteCar(1);
         checkNoSelectedItems();
         selectItem('2016');
 
@@ -297,9 +238,5 @@ describe('cq lead 203', () => {
         checkInputNoError('streetAddress');
         checkInputNoError('phoneNumber');
         clickButton('Get My Quotes');
-        // cy.intercept('POST', '**/results/**').as('results');
-        // cy.get('.funnel-form-container')
-        //     .contains('Get My Quotes')
-        //     .click({ force: true });
     });
 });

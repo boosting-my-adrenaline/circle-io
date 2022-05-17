@@ -1,0 +1,42 @@
+{
+    "sure5": {
+        "default": { "desktop": "606319", "mobile": "606319" },
+        "1": { "desktop": "667922", "mobile": "665664" },
+        "2": { "desktop": "667877", "mobile": "667878" },
+        "3": { "desktop": "667876", "mobile": "667909" },
+        "4": { "desktop": "606319", "mobile": "606319" },
+        "5": { "desktop": "606319", "mobile": "606319" },
+        "6": { "desktop": "666066", "mobile": "666066" },
+        "7": { "desktop": "667909", "mobile": "667909" },
+        "10": { "desktop": "668974", "mobile": "668975" },
+        "11": { "desktop": "669481", "mobile": "669482" },
+        "12": { "desktop": "669635", "mobile": "669636" },
+        "13": { "desktop": "606319", "mobile": "606319" },
+        "14": { "desktop": "606319", "mobile": "606319" },
+        "15": { "desktop": "606319", "mobile": "606319" },
+        "s": { "desktop": "666067", "mobile": "666067" },
+        "form3": { "desktop": "606319", "mobile": "606319" }
+    },
+    "tran": {
+        "default": { "desktop": "6130", "mobile": "6130" },
+        "1": { "desktop": "6130", "mobile": "6130" },
+        "2": { "desktop": "7742", "mobile": "7740" },
+        "3": { "desktop": "6130", "mobile": "6130" },
+        "4": { "desktop": "6698", "mobile": "6698" },
+        "5": { "desktop": "6130", "mobile": "6130" },
+        "6": { "desktop": "6130", "mobile": "6130" },
+        "7": { "desktop": "6130", "mobile": "6130" },
+        "10": { "desktop": "7741", "mobile": "7739" },
+        "13": { "desktop": "7478", "mobile": "7739" },
+        "14": { "desktop": "7476", "mobile": "7739" },
+        "15": { "desktop": "6130", "mobile": "7739" },
+        "s": { "desktop": "6130", "mobile": "7739" },
+        "form3": { "desktop": "5977", "mobile": "7739" }
+    },
+    "eq": {
+        "default": { "desktop": "SEM_Tier_3", "mobile": "SEM_Tier_3" },
+        "1": { "desktop": "SEM_Tier_1", "mobile": "SEM_Tier_1" },
+        "2": { "desktop": "SEM_Tier_2", "mobile": "SEM_Tier_2" },
+        "3": { "desktop": "SEM_Tier_3", "mobile": "SEM_Tier_3" }
+    }
+}
