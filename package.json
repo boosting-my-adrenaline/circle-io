@@ -3,13 +3,28 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
-        "react-scripts": "5.0.1"
+        "@testing-library/jest-dom": "^5.16.4",
+        "@testing-library/react": "^13.1.1",
+        "@testing-library/user-event": "^13.5.0",
+        "react": "^18.1.0",
+        "react-dom": "^18.1.0",
+        "react-scripts": "5.0.1",
+        "web-vitals": "^2.1.4"
     },
     "scripts": {
         "build": "react-scripts build",
+        "start": "react-scripts start",
+        "start:ci": "node --version",
         "test": "cypress run --record --key=ksvan2 --parallel",
         "test:open": "cypress open",
         "test:record1": "cypress run --record --key 1371d7bd-0fd6-4ced-92fd-1c38a3dd295b"
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest",
+            "plugin:cypress/recommended"
+        ]
     },
     "browserslist": {
         "production": [
