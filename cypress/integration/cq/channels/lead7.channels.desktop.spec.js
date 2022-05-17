@@ -1,7 +1,3 @@
-import { actions } from '../../../userActions';
-/* getting emulated user's actions we need to run tests from userActions.js */
-const { selectItem, selectInRadioGroup, typeInInput } = actions;
-
 describe('cq lead 7 desktop channels', () => {
     /* test function to be invoked */
     const test = (provider, channel) => {
@@ -14,7 +10,8 @@ describe('cq lead 7 desktop channels', () => {
                 answers = answersData.lead7;
             });
 
-            /* getting certain source id depending on provider, channel, and device from fixtures/channels/channels.json */
+            /* getting certain source id depending on provider, channel,
+                and device from fixtures/channels/channels.json */
             cy.fixture('channels/channels').then((channels) => {
                 sourceID = channels[provider][channel].desktop;
             });
@@ -41,28 +38,29 @@ describe('cq lead 7 desktop channels', () => {
                     `${channel !== 'default' ? `&ch=${channel}` : ``}`
             );
 
-            typeInInput('inputZipCode1', answers.zip + '{enter}');
-            selectItem(answers.vehicleYear_1);
-            selectItem(answers.vehicleMake_1);
-            selectItem(answers.vehicleModel_1);
-            selectItem(answers.vehicleSubModel_1);
-            selectInRadioGroup(1, answers.secondVehicle);
-            selectInRadioGroup(1, answers.licenseStatus);
-            selectInRadioGroup(1, answers.doesRequireSR22);
-            selectInRadioGroup(1, answers.currentlyInsured);
-            selectItem(answers.insuranceCarrier);
-            selectItem(answers.insuredTimeframe);
-            selectItem(answers.gender);
-            selectItem(answers.maritalStatus);
-            selectItem(answers.creditRating);
-            selectItem(answers.education);
-            selectItem(answers.ownHome);
-            selectItem(answers.hasAccidents);
-            selectItem(answers.birthMonth);
-            selectItem(answers.birthDay);
-            selectItem(answers.birthYear);
-            typeInInput('firstName', answers.yourName[0]);
-            typeInInput('lastName', answers.yourName[1]);
+            /* basically most of actions are custom and located in support/commands.js */
+            cy.typeInInput('inputZipCode1', answers.zip + '{enter}');
+            cy.selectItem(answers.vehicleYear_1);
+            cy.selectItem(answers.vehicleMake_1);
+            cy.selectItem(answers.vehicleModel_1);
+            cy.selectItem(answers.vehicleSubModel_1);
+            cy.selectInRadioGroup(1, answers.secondVehicle);
+            cy.selectInRadioGroup(1, answers.licenseStatus);
+            cy.selectInRadioGroup(1, answers.doesRequireSR22);
+            cy.selectInRadioGroup(1, answers.currentlyInsured);
+            cy.selectItem(answers.insuranceCarrier);
+            cy.selectItem(answers.insuredTimeframe);
+            cy.selectItem(answers.gender);
+            cy.selectItem(answers.maritalStatus);
+            cy.selectItem(answers.creditRating);
+            cy.selectItem(answers.education);
+            cy.selectItem(answers.ownHome);
+            cy.selectItem(answers.hasAccidents);
+            cy.selectItem(answers.birthMonth);
+            cy.selectItem(answers.birthDay);
+            cy.selectItem(answers.birthYear);
+            cy.typeInInput('firstName', answers.yourName[0]);
+            cy.typeInInput('lastName', answers.yourName[1]);
             cy.intercept('POST', '**/results/**').as('results');
             cy.get('.funnel-form-container')
                 .contains('Get My Auto Quotes')

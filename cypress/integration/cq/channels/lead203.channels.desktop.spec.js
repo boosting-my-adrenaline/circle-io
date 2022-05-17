@@ -1,13 +1,3 @@
-import { actions } from '../../../userActions';
-/* getting emulated user's actions we need to run tests from userActions.js */
-const {
-    selectItem,
-    selectInRadioGroup,
-    selectItemFromDropDown,
-    typeInInput,
-    clickButton,
-} = actions;
-
 describe('cq lead 203 desktop channels', () => {
     /* test function to be invoked */
     const test = (provider, channel) => {
@@ -48,28 +38,29 @@ describe('cq lead 203 desktop channels', () => {
                     `${channel !== 'default' ? `&ch=${channel}` : ``}`
             );
 
-            typeInInput('inputZipCode1', answers.zip + '{enter}');
-            selectItem(answers.vehicleYear_1);
-            selectItem(answers.vehicleMake_1);
-            selectItem(answers.vehicleModel_1);
-            selectItem(answers.vehicleSubModel_1);
-            selectInRadioGroup(1, answers.secondVehicle);
-            selectItemFromDropDown(answers.insuranceCarrier);
-            clickButton('Continue');
-            selectItem(answers.insuredTimeframe);
-            selectInRadioGroup(1, answers.maritalStatus[0]);
-            selectInRadioGroup(2, answers.maritalStatus[1]);
-            selectInRadioGroup(3, answers.maritalStatus[2]);
-            clickButton('Continue');
-            selectItem(answers.birthMonth);
-            selectItem(answers.birthDay);
-            selectItem(answers.birthYear);
-            typeInInput('firstName', answers.yourName[0]);
-            typeInInput('lastName', answers.yourName[1]);
-            clickButton('Continue');
-            typeInInput('streetAddress', answers.yourPhone[0]);
-            typeInInput('email', answers.yourPhone[1]);
-            typeInInput('phoneNumber', answers.yourPhone[2]);
+            /* basically most of actions are custom and located in support/commands.js */
+            cy.typeInInput('inputZipCode1', answers.zip + '{enter}');
+            cy.selectItem(answers.vehicleYear_1);
+            cy.selectItem(answers.vehicleMake_1);
+            cy.selectItem(answers.vehicleModel_1);
+            cy.selectItem(answers.vehicleSubModel_1);
+            cy.selectInRadioGroup(1, answers.secondVehicle);
+            cy.selectItemFromDropDown(answers.insuranceCarrier);
+            cy.clickButton('Continue');
+            cy.selectItem(answers.insuredTimeframe);
+            cy.selectInRadioGroup(1, answers.maritalStatus[0]);
+            cy.selectInRadioGroup(2, answers.maritalStatus[1]);
+            cy.selectInRadioGroup(3, answers.maritalStatus[2]);
+            cy.clickButton('Continue');
+            cy.selectItem(answers.birthMonth);
+            cy.selectItem(answers.birthDay);
+            cy.selectItem(answers.birthYear);
+            cy.typeInInput('firstName', answers.yourName[0]);
+            cy.typeInInput('lastName', answers.yourName[1]);
+            cy.clickButton('Continue');
+            cy.typeInInput('streetAddress', answers.yourPhone[0]);
+            cy.typeInInput('email', answers.yourPhone[1]);
+            cy.typeInInput('phoneNumber', answers.yourPhone[2]);
             cy.intercept('POST', '**/results/**').as('results');
             cy.get('.funnel-form-container')
                 .contains('Get My Quotes')
