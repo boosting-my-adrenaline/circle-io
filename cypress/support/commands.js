@@ -52,6 +52,8 @@ Cypress.Commands.add('typeInInput', (input, text) =>
 
 Cypress.Commands.add('clearInput', (input) => cy.get(`#${input}`).clear());
 
+/* randomized */
+
 /* check commands */
 
 Cypress.Commands.add('checkItemsAmount', (amount) =>
@@ -165,7 +167,7 @@ Cypress.Commands.add('checkInputError', (input) =>
 
 Cypress.Commands.add(
     'checkValueWithDateSomeMonthesAgo',
-    (key, monthBeforeDate) => {
+    (keyInLocalStorage, monthBeforeDate) => {
         let d = new Date();
         d.setMonth(d.getMonth() - (monthBeforeDate || 0));
 
@@ -176,7 +178,8 @@ Cypress.Commands.add(
         if (month.length < 2) month = '0' + month;
         if (day.length < 2) day = '0' + day;
 
+        /* date in format 22-05-18 */
         let value = [year, month, day].join('-');
-        checkItemInLocalStorage('ffr', key, value);
+        checkItemInLocalStorage('ffr', keyInLocalStorage, value);
     }
 );

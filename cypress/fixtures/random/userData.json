@@ -1,0 +1,189 @@
+{
+    "firstNames": {
+        "male": [
+            "Liam",
+            "Noah",
+            "Oliver",
+            "Elijah",
+            "James",
+            "William",
+            "Benjamin",
+            "Lucas",
+            "Henry",
+            "Theodore"
+        ],
+        "female": [
+            "Olivia",
+            "Emma",
+            "Charlotte",
+            "Amelia",
+            "Ava",
+            "Sophia",
+            "Isabella",
+            "Mia",
+            "Evelyn",
+            "Harper"
+        ]
+    },
+    "lastNames": [
+        "Smith",
+        "Johnson",
+        "Williams",
+        "Brown",
+        "Jones",
+        "Garcia",
+        "Miller",
+        "Davis",
+        "Rodriguez",
+        "Lee",
+        "Hernandez",
+        "Lopez",
+        "Gonzalez",
+        "Wilson",
+        "Anderson",
+        "Thomas",
+        "Taylor",
+        "Moore",
+        "Jackson",
+        "Martin"
+    ],
+    "addresses": [
+        {
+            "city": "Hugo",
+            "state": "OK",
+            "zip": "74743",
+            "street": "612 E Duke St"
+        },
+        {
+            "city": "Linden",
+            "state": "MI",
+            "zip": "48451",
+            "street": "14290 Mccaslin Lake Rd"
+        },
+        {
+            "city": "Mohawk",
+            "state": "NY",
+            "zip": "13407",
+            "street": "7 Green St"
+        },
+        {
+            "city": "Dripping Springs",
+            "state": "TX",
+            "zip": "78620",
+            "street": "505 Saddletree Ln"
+        },
+        {
+            "city": "Culpeper",
+            "state": "VA",
+            "zip": "22701",
+            "street": "778 Colonels Ct"
+        },
+        {
+            "city": "Louin",
+            "state": "MS",
+            "zip": "39338",
+            "street": "22 County 23533 Rd"
+        },
+        {
+            "city": "Caledonia",
+            "state": "MS",
+            "zip": "39740",
+            "street": "115 Westbrook Rd"
+        },
+        {
+            "city": "Granite City",
+            "state": "IL",
+            "zip": "62040",
+            "street": "133 Kinder Ln"
+        },
+        {
+            "city": "Gainesville",
+            "state": "FL",
+            "zip": "32608",
+            "street": "5530 SW 98th Ter"
+        },
+        {
+            "city": "Newark",
+            "state": "NJ",
+            "zip": "07106",
+            "street": "21 Helen Pl"
+        }
+    ],
+    "phoneNumbers": [
+        "(580) 326-9670",
+        "(810) 735-2945",
+        "(607) 847-9769",
+        "(512) 829-4824",
+        "(540) 825-8058",
+        "(601) 729-3877",
+        "(662) 356-0535",
+        "(618) 797-2322",
+        "(352) 371-6319",
+        "(401) 823-1845"
+    ],
+    "emails": [
+        "lstein12@verizon.net",
+        "manuals90@yahoo.ca",
+        "luebke@live.com",
+        "mdielmann@comcast.net",
+        "noneme17@hotmail.com",
+        "martyloo@msn.com",
+        "miyop@aol.com",
+        "dalamb21@mac.com",
+        "dogdude@hotmail.com",
+        "syncnine@att.net"
+    ],
+    "insuranceCarriers": [
+        "Other",
+        "No",
+        "21st Century",
+        "AIG",
+        "Allstate",
+        "American Family",
+        "Country Financial",
+        "Esurance",
+        "Farmers",
+        "Geico",
+        "Liberty Mutual",
+        "MetLife",
+        "Nationwide",
+        "Progressive",
+        "State Farm",
+        "Travelers"
+    ],
+    "insuredTime": {
+        "standart": [
+            "Less than year",
+            "1 to 2 years",
+            "2 to 3 years",
+            "4+ years"
+        ],
+        "new": ["1 Year Or Less", "1 To 2 Years", "2 To 3 years", "4+ Years"]
+    },
+    "creditScores": [
+        "Not Sure (that's okay!)",
+        "Poor (below 580)",
+        "Fair/Average (580-679)",
+        "Good (680-719)",
+        "Excellent (720+)"
+    ],
+    "educations": [
+        "Incomplete",
+        "High School",
+        "Some college",
+        "Associate degree",
+        "Bachelors degree",
+        "Masters degree",
+        "PhD"
+    ],
+    "accidents": [
+        "Accident: At Fault",
+        "Accident: Not At Fault",
+        "Claim: Theft",
+        "Claim: Other",
+        "Violation: Drunk Driving",
+        "Violation: Speeding",
+        "Violation: Other Ticket"
+    ],
+    "accidentDates": ["Less than year", "1 to 2 years", "2 to 3 years"]
+}

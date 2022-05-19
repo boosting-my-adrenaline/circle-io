@@ -1,0 +1,87 @@
+{
+    "1": {
+        "name": "vehicleYear_1",
+        "title": "Vehicle year",
+        "amount": [42, 17]
+    },
+    "2": {
+        "name": "vehicleMake_1",
+        "title": "Vehicle make",
+        "choices": [12, "vehicleYear_1.LENGTH"]
+    },
+    "3": {
+        "name": "vehicleModel_1",
+        "title": "Vehicle model",
+        "choices": ["vehicleYear_1.vehicleMake_1.LENGTH"]
+    },
+    "4": {
+        "name": "vehicleSubModel_1",
+        "title": "Vehicle trim",
+        "choices": ["vehicleYear_1.vehicleMake_1.vehicleModel_1.LENGTH"]
+    },
+    "5": {
+        "name": "secondVehicle",
+        "title": "Add second vehicle?",
+        "choices": [2]
+    },
+    "6": {
+        "name": "vehicleYear_2",
+        "title": "Vehicle year",
+        "choices": [42, 17]
+    },
+    "7": {
+        "name": "vehicleMake_2",
+        "title": "Vehicle make",
+        "choices": [12, "vehicleYear_2.LENGTH"]
+    },
+    "8": {
+        "name": "vehicleModel_2",
+        "title": "Vehicle model",
+        "choices": ["vehicleYear_2.vehicleMake_2.LENGTH"]
+    },
+    "9": {
+        "name": "vehicleSubModel_2",
+        "title": "Vehicle trim",
+        "choices": ["vehicleYear_2.vehicleMake_2.vehicleModel_2.LENGTH"]
+    },
+    "10": {
+        "name": "insuranceCarrier",
+        "title": "Current auto insurance",
+        "choices": [1, 15]
+    },
+    "11": {
+        "name": "insuredTimeframe",
+        "title": "How long have you continuously had auto insurance?",
+        "choices": [4]
+    },
+    "12": {
+        "name": "maritalStatus",
+        "title": "Tell Us About The Driver",
+        "choices": [[2], [2], [2]]
+    },
+    "13": {
+        "name": "birthMonth",
+        "title": "Select your birth month?",
+        "choices": [12]
+    },
+    "14": {
+        "name": "birthDay",
+        "title": "Select your birth day",
+        "choices": [31]
+    },
+    "15": {
+        "name": "birthYear",
+        "title": "Select your birth year",
+        "choices": [24, 76]
+    },
+    "16": {
+        "name": "yourName",
+        "title": "What Is Your Name?",
+        "choices": [10, 10]
+    },
+    "17": {
+        "name": "yourPhone",
+        "title": "You Qualify For Major Discounts!",
+        "choices": [[10], [10], [10]]
+    }
+}

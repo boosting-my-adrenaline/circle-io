@@ -1,4 +1,26 @@
 // import React, { useEffect, useRef, useState } from 'react';
+
+// import { getRandomUser } from './cypress/utils/getRandomUser';
+
+// import { getRandomVehicle } from './cypress/utils/getRandomVehicle';
+
+export const App = () => {
+    // console.log(getRandomVehicle());
+    // const [data, setDate] = useState([]);
+    // const getData = async () => {
+    //     let data = await import(`./cypress/fixtures/data/${1983}.json`).then(
+    //         (module) => setDate(module.default)
+    //     );
+    // };
+    // useEffect(() => {
+    //     getData();
+    //     setTimeout(() => console.log(data), 10);
+    // }, []);\
+
+    // console.log(getRandomUser());
+    // console.log(getRandomUser());
+    return <div></div>;
+};
 // import './App.css';
 
 // window.MediaAlphaExchange = {
