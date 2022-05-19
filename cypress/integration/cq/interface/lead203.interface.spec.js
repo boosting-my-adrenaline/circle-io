@@ -24,12 +24,14 @@ describe('cq lead 203 interface', () => {
             cy.checkNoSelectedItems();
             cy.checkNoBackButton();
             device === 'desktop' ? cy.checkFooter() : cy.checkNoFooter();
-            cy.checkItemInLocalStorage('zip', '75216');
-            cy.checkItemInLocalStorage('location', '75216');
+            cy.checkItemInLocalStorageFFR7(
+                ['zip', '75216'],
+                ['location', '75216']
+            );
             cy.checkItemsAmount(24);
             cy.selectItem('2017');
 
-            cy.checkItemInLocalStorage('vehicleYear_1', '2017');
+            cy.checkItemInLocalStorageFFR7('vehicleYear_1', '2017');
             cy.checkHeader('Vehicle make');
             cy.stepBack();
 
@@ -37,7 +39,7 @@ describe('cq lead 203 interface', () => {
             cy.checkItemSelected('2017');
             cy.selectItemFromDropDown('1996');
 
-            cy.checkItemInLocalStorage('vehicleYear_1', '1996');
+            cy.checkItemInLocalStorageFFR7('vehicleYear_1', '1996');
             cy.stepBack();
 
             cy.checkItemSelected('1996');
@@ -48,18 +50,20 @@ describe('cq lead 203 interface', () => {
             cy.checkItemsAmount(12);
             cy.selectItem('TOYOTA');
 
-            cy.checkItemInLocalStorage('vehicleMake_1', 'TOYOTA');
+            cy.checkItemInLocalStorageFFR7('vehicleMake_1', 'TOYOTA');
             cy.stepBack();
 
             cy.checkItemSelected('TOYOTA');
             cy.selectItemFromDropDown('VOLVO');
 
             cy.checkHeader('Vehicle model');
-            cy.checkItemInLocalStorage('vehicleMake_1', 'VOLVO');
-            cy.checkItemInLocalStorage('vehicleYear_1', '2016');
+            cy.checkItemInLocalStorageFFR7(
+                ['vehicleMake_1', 'VOLVO'],
+                ['vehicleYear_1', '2016']
+            );
             cy.selectItem('S60');
 
-            cy.checkItemInLocalStorage('vehicleModel_1', 'S60');
+            cy.checkItemInLocalStorageFFR7('vehicleModel_1', 'S60');
             cy.stepBack();
 
             cy.stepBack();
@@ -68,10 +72,10 @@ describe('cq lead 203 interface', () => {
             cy.checkItemsAmount(13);
             cy.selectItem('TOYOTA');
 
-            cy.checkItemInLocalStorage('vehicleMake_1', 'TOYOTA');
+            cy.checkItemInLocalStorageFFR7('vehicleMake_1', 'TOYOTA');
             cy.selectItem('LAND CRUISER');
 
-            cy.checkItemInLocalStorage('vehicleModel_1', 'LAND CRUISER');
+            cy.checkItemInLocalStorageFFR7('vehicleModel_1', 'LAND CRUISER');
             cy.checkHeader('Add second vehicle?');
             cy.checkEditVehicle(1, 2016, 'TOYOTA', 'LAND CRUISER');
             cy.editCar(1);
@@ -84,9 +88,11 @@ describe('cq lead 203 interface', () => {
 
             cy.checkItemSelected('LAND CRUISER');
             cy.selectItem('LAND CRUISER');
-            cy.checkItemInLocalStorage('vehicleYear_1', '2016');
-            cy.checkItemInLocalStorage('vehicleMake_1', 'TOYOTA');
-            cy.checkItemInLocalStorage('vehicleModel_1', 'LAND CRUISER');
+            cy.checkItemInLocalStorageFFR7(
+                ['vehicleYear_1', '2016'],
+                ['vehicleMake_1', 'TOYOTA'],
+                ['vehicleModel_1', 'LAND CRUISER']
+            );
             cy.deleteCar(1);
 
             cy.checkNoSelectedItems();
@@ -97,9 +103,11 @@ describe('cq lead 203 interface', () => {
 
             cy.checkNoSelectedItems();
             cy.selectItem('LAND CRUISER');
-            cy.checkItemInLocalStorage('vehicleYear_1', '2016');
-            cy.checkItemInLocalStorage('vehicleMake_1', 'TOYOTA');
-            cy.checkItemInLocalStorage('vehicleModel_1', 'LAND CRUISER');
+            cy.checkItemInLocalStorageFFR7(
+                ['vehicleYear_1', '2016'],
+                ['vehicleMake_1', 'TOYOTA'],
+                ['vehicleModel_1', 'LAND CRUISER']
+            );
             cy.clickButton('Yes');
 
             cy.checkNoSelectedItems();
@@ -113,18 +121,20 @@ describe('cq lead 203 interface', () => {
 
             cy.checkEditVehicle(1, 2016, 'TOYOTA', 'LAND CRUISER');
             cy.checkEditVehicle(2, 2020, 'CHEVROLET', 'TRAX LS');
-            cy.checkItemInLocalStorage('vehicleYear_2', '2020');
-            cy.checkItemInLocalStorage('vehicleMake_2', 'CHEVROLET');
-            cy.checkItemInLocalStorage('vehicleModel_2', 'TRAX LS');
-            cy.checkItemInLocalStorage('vehicleYear_1', '2016');
-            cy.checkItemInLocalStorage('vehicleMake_1', 'TOYOTA');
-            cy.checkItemInLocalStorage('vehicleModel_1', 'LAND CRUISER');
-            cy.checkItemInLocalStorage('moreThenOneVehicle', 'Yes');
+            cy.checkItemInLocalStorageFFR7(
+                ['vehicleYear_2', '2020'],
+                ['vehicleMake_2', 'CHEVROLET'],
+                ['vehicleModel_2', 'TRAX LS'],
+                ['vehicleYear_1', '2016'],
+                ['vehicleMake_1', 'TOYOTA'],
+                ['vehicleModel_1', 'LAND CRUISER'],
+                ['moreThenOneVehicle', 'Yes']
+            );
             cy.checkHeader('Current auto insurance');
             cy.checkDropDown('Other');
             cy.clickButton('Continue');
 
-            cy.checkItemInLocalStorage('insuranceCarrier', 'Other');
+            cy.checkItemInLocalStorageFFR7('insuranceCarrier', 'Other');
             cy.stepBack();
 
             cy.selectItemFromDropDown('Travelers');
@@ -137,16 +147,21 @@ describe('cq lead 203 interface', () => {
             cy.checkItemsAmount(4);
             cy.selectItem('1 year or less');
 
-            cy.checkItemInLocalStorage('insuredTimeframe', 'SixToElevenMonths');
+            cy.checkItemInLocalStorageFFR7(
+                'insuredTimeframe',
+                'SixToElevenMonths'
+            );
             cy.checkHeader('Tell Us About The Driver');
             cy.checkRadioGroupSelected(1, 'Yes');
             cy.checkRadioGroupSelected(2, 'Yes');
             cy.checkRadioGroupSelected(3, 'Male');
             cy.clickButton('Continue');
 
-            cy.checkItemInLocalStorage('gender', 'M');
-            cy.checkItemInLocalStorage('ownHome', 'Yes');
-            cy.checkItemInLocalStorage('maritalStatus', 'Yes');
+            cy.checkItemInLocalStorageFFR7(
+                ['gender', 'M'],
+                ['ownHome', 'Yes'],
+                ['maritalStatus', 'Yes']
+            );
             cy.stepBack();
 
             cy.selectInRadioGroup(1, 'No');
@@ -157,14 +172,16 @@ describe('cq lead 203 interface', () => {
             cy.checkRadioGroupSelected(3, 'Female');
             cy.clickButton('Continue');
 
-            cy.checkItemInLocalStorage('gender', 'F');
-            cy.checkItemInLocalStorage('ownHome', 'No');
-            cy.checkItemInLocalStorage('maritalStatus', 'No');
+            cy.checkItemInLocalStorageFFR7(
+                ['gender', 'F'],
+                ['ownHome', 'No'],
+                ['maritalStatus', 'No']
+            );
             cy.checkHeader('Select your birth month?');
             cy.checkItemsAmount(12);
             cy.selectItem('NOV');
 
-            cy.checkItemInLocalStorage('birthMonth', '11');
+            cy.checkItemInLocalStorageFFR7('birthMonth', '11');
             cy.checkHeader('Select your birth day');
             cy.checkItemsAmount(31);
             cy.stepBack();
@@ -172,30 +189,32 @@ describe('cq lead 203 interface', () => {
             cy.checkItemSelected('NOV');
             cy.selectItem('SEP');
 
-            cy.checkItemInLocalStorage('birthMonth', '9');
+            cy.checkItemInLocalStorageFFR7('birthMonth', '9');
             cy.selectItem('25');
 
-            cy.checkItemInLocalStorage('birthDay', '25');
+            cy.checkItemInLocalStorageFFR7('birthDay', '25');
             cy.checkHeader('Select your birth year');
             cy.checkItemsAmount(24);
             cy.selectItemFromDropDown('1980');
 
-            cy.checkItemInLocalStorage('birthYear', '1980');
+            cy.checkItemInLocalStorageFFR7('birthYear', '1980');
             cy.checkHeader('What Is Your Name?');
             cy.stepBack();
 
             cy.checkItemsAmount(25);
             cy.selectItem('1990');
 
-            cy.checkItemInLocalStorage('birthYear', '1990');
+            cy.checkItemInLocalStorageFFR7('birthYear', '1990');
             cy.typeInInput('firstName', 'Stephen');
             cy.checkInput('firstName', 'Stephen');
             cy.typeInInput('lastName', 'Curry');
             cy.checkInput('lastName', 'Curry');
             cy.clickButton('Continue');
 
-            cy.checkItemInLocalStorage('firstName', 'Stephen');
-            cy.checkItemInLocalStorage('lastName', 'Curry');
+            cy.checkItemInLocalStorageFFR7(
+                ['firstName', 'Stephen'],
+                ['lastName', 'Curry']
+            );
             cy.stepBack();
 
             cy.checkInput('firstName', 'Stephen');
@@ -206,8 +225,10 @@ describe('cq lead 203 interface', () => {
             cy.typeInInput('lastName', 'Tompson');
             cy.clickButton('Continue');
 
-            cy.checkItemInLocalStorage('firstName', 'Klay');
-            cy.checkItemInLocalStorage('lastName', 'Tompson');
+            cy.checkItemInLocalStorageFFR7(
+                ['firstName', 'Klay'],
+                ['lastName', 'Tompson']
+            );
             cy.typeInInput('streetAddress', 'Miami');
             cy.typeInInput('email', 'example18');
             cy.typeInInput('phoneNumber', '54321414');
